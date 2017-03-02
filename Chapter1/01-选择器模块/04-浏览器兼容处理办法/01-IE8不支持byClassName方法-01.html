@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div></div>
+    <div class="c"></div>
+    <div></div>
+  </body>
+  <script>
+
+    // var list = document.getElementsByClassName( 'c' );
+
+    if ( !document.getElementsByClassName ) {
+      // 进入该范围表示: get*byClassName 不存在
+      // alert( '进入兼容区' );
+      document.getElementsByClassName = function ( className ) {
+        var list = document.getElementsByTagName( '*' );
+        var res = [];
+        for ( var i = 0; i < list.length; i++ ) {
+          if ( ( " " + list[ i ].className + " " ).indexOf( " " + className + " " ) > -1 ) {
+            res.push( list[ i ] );
+          }
+        } 
+        return res;
+      };
+    }
+
+
+    var list = document.getElementsByClassName( 'c' );
+
+
+    var _ = 0;  // IE 8 浏览器如果需要查看 list 的数据, 就需要添加一行代码, 设置断点
+
+  </script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>02-兼容的byClassName方法.html</title>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div>1</div>
+    <div>2</div>
+    <div class="c">3</div>
+    <div id="dv">4
+      <div class="c">5</div>
+    </div>
+    <p>p1</p>
+    <p class="c">p2</p>
+    <p>p3</p>
+  </body>
+  <script>
+    // support, getByClassName 函数
+
+    var support = {};
+    var rnative = /\{\s*\[native/;
+    support.getElementsByClassName = rnative.test( document.getElementsByClassName + '' );
+
+
+    function getByClassName ( className, node ) {
+      node = node || document;
+      var allElem, res = [], i;
+
+
+      if ( support.getElementsByClassName ) {
+        return node.getElementsByClassName( className );
+      } else {
+        allElem = node.getElementsByTagName( '*' );
+        for ( i = 0; i < allElem.length; i++ ) {
+          if ( allElem[ i ].className === className ) {
+            res.push( allElem[ i ] );
+          }
+        }
+        return res;
+      }
+    }
+
+
+
+    var list = getByClassName( 'c', document.getElementById( 'dv' ) );
+    for ( var i = 0; i < list.length; i++ ) {
+      list[ i ].style.border = '1px solid red';
+    }
+
+  </script>
+
+
+</html>

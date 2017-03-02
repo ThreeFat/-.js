@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div></div>
+    <div class="c"></div>
+    <div></div>
+  </body>
+  <script>
+
+    // var list = document.getElementsByClassName( 'c' );
+
+
+    function getByClass( className ) {
+      // 检查系统是否支持该方法, 如果支持就直接使用
+      // 如果不持之在自己实现算法完成. 注意, 不是修改 document 对象
+      if ( document.getElementsByClassName ) {
+        return document.getElementsByClassName( className );
+      } else {
+        var list = document.getElementsByTagName( '*' ), res = [];
+        for ( var i = 0; i < list.length; i++ ) {
+          if ( ( " " + list[ i ].className + " " ).indexOf( " " + className + " " ) > -1 ) {
+            res.push( list[ i ] );
+          }
+        }
+        return res;
+      }
+    }
+    
+
+    var res = getByClass( 'c' );
+
+    var _ = 0;
+
+
+
+  </script>
+</html>
