@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		div, p {
+			border: 1px dashed red;
+			margin: 5px;
+			padding: 5px;
+		}
+	</style>
+	<script src="select.js"></script>
+</head>
+<body>
+	<div>
+		<p class='c'>p1
+			<span class="c">span</span>
+		</p>
+		<div>
+			<p class='c'>p3</p>
+			<div>
+				<p>p4</p>
+			</div>
+		</div>
+	</div>
+	<div id="dv">
+		<p>p2</p>
+	</div>
+</body>
+<script>
+	var list = select( 'div p .c, div p' );
+
+
+
+</script>
+</html>

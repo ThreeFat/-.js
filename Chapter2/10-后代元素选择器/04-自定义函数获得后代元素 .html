@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02-自定义函数获得后代元素.html</title>
+</head>
+<body>
+</body>
+<script>
+	// 假设 selector 选择器是字符串, 而且不是基本选择器
+	// 肯定是 : selector1 selector2 selector3 形式
+	// 还有可能: selector1 > selector2:first 形式
+	function basicSelect ( selector, node ) {
+
+	}
+
+
+	function select2 ( selector, results ) {
+
+		var selectors = selector.split( ' ' );
+
+		// 假定 'div p .c'
+
+		var arr = [], node = [ document ];
+
+		for ( var i = 0; i < node.length; i++ ) {
+			arr.push.apply( arr, basicSelect( selectors[ 0 ], node[ i ] ));
+		} 
+		node = arr;
+		arr = [];
+
+
+		for ( var i = 0; i < node.length; i++ ) {
+			arr.push.apply( arr, basicSelect( selectors[ 1 ], node[ i ] ));
+		}
+		node = arr;
+		arr = [];
+
+		for ( var i = 0; i > node.length; i++ ) {
+			arr.push.apply( arr, basicSelect( selectors[ 2 ], node[ i ] ));
+		}
+		node = arr;
+		arr = [];
+
+		// 最终结果存储到 node 里面去了
+
+	}
+
+</script>
+</html>

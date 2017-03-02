@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="select.js"></script>
+</head>
+<body>
+	<div>div1</div>
+	<div>div2</div>
+	<div>div3</div>
+	<div>div4</div>
+
+</body>
+<script>
+	
+	function each( arr, func ) {
+		for ( var i = 0; i < arr.length; i++ ) {
+			// 内部的代码. 变的是如何操作 i 和 arr[ i ]
+			func.call( arr[ i ], i, arr[ i ] );
+		}
+	}	
+
+	var list = select( 'div' );
+
+	each( list, function ( i, v ) {
+		v.style.border = '1px dashed red';
+		v.style.padding = '5px';
+		v.style.margin = '5px';
+	});
+
+	each( list, function ( i, v ) {
+		this.style.backgroundColor = 'pink';
+	});
+
+
+</script>
+</html>

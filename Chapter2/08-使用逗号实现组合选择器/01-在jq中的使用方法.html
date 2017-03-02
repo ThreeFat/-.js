@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01-在jq中的使用方法.html</title>
+	<script src="../../../资料/jquery/jquery-1.7.1/jquery-1.7.1.js"></script>
+	<script>
+		// alert( $ );
+	</script>
+</head>
+<body>
+	<div>div1</div>
+	<div>div2</div>
+	<p>p1</p>
+	<p>p2</p>
+	<ul><li>123</li></ul>
+	<ul><li>123</li></ul>
+</body>
+<script>
+	// 使用 jq 给他天样式
+	$( 'div , p , ul' ).each( function ( k, v ) {
+		console.log( k + ', ' + v + ', ' + ( v === this ) );
+		v.style.border = '1px solid red';
+	} );
+
+	// 1. 使用组合选择器实现元素获取: 使用逗号隔开的选择器
+	//	使用 'div, p, ul' 其中由于使用了逗号, 因此可以看做三个独立的部分
+	//  每一个独立部分都在获取元素, 然后将元素合并放到一个 jq 对象中.
+	//  var $1 = $( 'div , p , ul' );
+
+	// 2. 使用 each 方法遍历每一个元素. 即将 jq 对象中存储的每一个 DOM 元素都遍历一下
+	// 	使用传入的函数处理每一个元素. 函数的 第一个参数是序号, 第二个参数是对象的引用.
+	//	函数中的 this 也是对象的引用
+
+</script>
+</html>

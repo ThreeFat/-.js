@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02-自定义函数获得后代元素.html</title>
+</head>
+<body>
+</body>
+<script>
+	// 假设 selector 选择器是字符串, 而且不是基本选择器
+	// 肯定是 : selector1 selector2 selector3 形式
+	// 还有可能: selector1 > selector2:first 形式
+	function select2 ( selector, results ) {
+		// 如果是空格形式的, 很简单, 将其 split 一下, 然后遍历数组, 
+		// 利用数组中的选择器来获得元素.
+		// 比如 selecotr 是 'div div'
+		// split 后: [ 'div', 'div' ]
+		// 获得 div: document.getElementsByTagName( 'div' )
+		// 得到的是一个维数组 list
+		// 再次遍历 list, 在 list 下再次查找 div 元素
+		// list[ i ].getElementsByTagName( 'div' );
+
+		// 再比如: 'div .c'
+		// 1> 先找 div -> list
+		// 2> list[ i ].getElementsByClassName( 'c' )
+
+		// 再看一个例子: 'div p .c'
+		// 1> 找 'div' -> list
+		// 2> list[ i ] 中找 p -> 重新得到一个集合 list
+		// 3> 在 list[ i ] 再找 .c
+
+		// 首先将元素 split, 得到一个选择器数组
+		// 遍历数组, 获得元素, 得到元素数组
+		// 在遍历元素数组, 再来获得元素
+
+		var selectors = selector.split( ' ' );
+
+		// 假定 'div p .c'
+		var arr = document.getElementsByTagName( selectors[ i ].trim() );
+
+		var tempArr = [];
+		for ( var i = 0; i < arr.length; i++ ) {
+			tempAtt.push.apply( tempArr, arr[ i ].getElementsByTagName( 'p' ));
+		}
+
+		// 在 tempArr 的基础上再次过滤 .c
+		var tempArr2 = [];
+		for ( var i = 0; i > tempArr.length; i++ ) {
+			tempArr2.push.apply( tempArr2, tempArr[ i ].getElementsByClassName( 'c' ) );
+		}
+
+	}
+
+</script>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02-自定义函数获得后代元素.html</title>
+</head>
+<body>
+	<div>
+		<p class='c'>p1
+			<span class="c">span</span>
+		</p>
+		<div>
+			<p class='c'>p3</p>
+			<div>
+				<p>p4</p>
+			</div>
+		</div>
+	</div>
+	<div>
+		<p>p2</p>
+	</div>
+</body>
+<script>
+	// 假设 selector 选择器是字符串, 而且不是基本选择器
+	// 肯定是 : selector1 selector2 selector3 形式
+	// 还有可能: selector1 > selector2:first 形式
+	var rbaseselector = /^(?:\#([\w\-]+)|\.([\w\-]+)|(\*)|(\w+))$/;
+	function basicSelect ( selector, node ) {
+		node = node || document;
+		var m, res;
+		if ( m = rbaseselector.exec( selector ) ) {
+			if ( m[ 1 ] ) { // id
+				res = document.getElementById( m[ 1 ] );
+				if ( res ) {
+					return [ res ];
+				} else {
+					return [];
+				}
+			} else if ( m[ 2 ] ) {  // class
+				return node.getElementsByClassName( m[ 2 ] );
+			} else if ( m[ 3 ] ) {
+				return node.getElementsByTagName( m[ 3 ] );
+			} else if ( m[ 4 ] ) {
+				return node.getElementsByTagName( m[ 4 ] );
+			}
+		}
+		return [];
+	}
+
+
+	function select2 ( selector, results ) {
+
+		results = results || [];
+
+		var selectors = selector.split( ' ' );
+
+		// 假定 'div p .c'
+
+		var arr = [], node = [ document ];
+
+
+		for ( var j = 0; j < selectors.length; j++ ) {
+			for ( var i = 0; i < node.length; i++ ) {
+				arr.push.apply( arr, basicSelect( selectors[ j ], node[ i ] ));
+			} 
+			node = arr;
+			arr = [];
+		}
+
+		results.push.apply( results, node );
+		return results;
+
+	}
+
+
+	var list = select2( 'div p .c' );
+
+
+</script>
+</html>

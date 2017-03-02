@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+  </body>
+  <script>
+    var list = document.getElementsByTagName( 'div' );
+    var arr = [];
+
+    // arr.push.apply( arr, list );
+
+    // arr.push.apply( arr, { length: 0 } )
+
+    // 可以考虑重新实现 push 的 apply 方法
+
+    var push = [].push;
+
+    // push.apply( ... ... )
+
+    push = {
+      apply: function ( array1, array2 ) {
+        // 该方法的功能就是 将 array2 的每一个元素 都加到 array1 中
+        // 但是 不能使用原始的 push 方法. 因为 array1 和 array2 都可能是伪数组
+
+        for ( var i = 0; i < array2.length; i++ ) {
+          array1[ array1.length++ ] = array2[ i ];
+        }
+
+      }
+    };
+
+    push.apply( arr, list );
+
+
+    var _ = 0;
+
+
+  </script>
+</html>

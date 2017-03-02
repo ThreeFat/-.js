@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="select.js"></script>
+</head>
+<body>
+	<div>div1</div>
+	<div>div2</div>
+	<div>div3</div>
+	<div>div4</div>
+</body>
+<script>
+	function each ( arr, func ) {
+		var i;
+		// 在 ES5 中还引入了 Array.isArray 的方法专门来判断数组
+		if ( arr instanceof Array || arr.length >= 0) {
+			for ( i = 0; i < arr.length; i++ ) {
+				func.call( arr[ i ], i, arr[ i ] );
+			}
+		} else {
+			for ( i in arr ) {
+				func.call( arr[ i ], i, arr[ i ] );
+			}
+		}
+		return arr;
+	}
+
+
+	// var list = select( 'div' );
+	var list = document.getElementsByTagName( 'div' ); // HTMLCollection
+
+	each( list, function ( i, v ) {
+		this.style.border = '1px solid red';
+	})
+
+</script>
+</html>
