@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+</body>
+<script>
+	function $ ( html ) {
+		
+		var div = document.createElement( 'div' );
+		
+		div.innerHTML = html;
+		
+		var res = [];
+		for ( var i = 0; i < div.childNodes.length; i++ ) {
+			res.push( div.childNodes[ i ] );
+		}
+
+		res.appendTo = function ( dom ) {
+			// 在方法中药访问 res 除了使用 res 以外, 还可以使用 this
+			for ( var i = 0; i < this.length; i++ ) {
+				dom.appendChild( this[ i ] );
+			}
+		};
+
+
+		return res;
+	}
+
+	// 需要数组提供 appendTo 方法, 给数组原型提供该方法. 至少给 res 提供
+	// 参数是一个 DOM 对象, 要求将数组中存储的每一个 DOM 对象加到它上面去
+
+
+
+	$( '<div style="border: 1px dashed red; background-color: pink;">123</div>' ).appendTo( document.body );
+
+</script>
+</html>

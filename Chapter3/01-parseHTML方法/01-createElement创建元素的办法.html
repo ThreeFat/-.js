@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+</body>
+<script>
+	// 1, 明确创建什么元素
+	// 		例如 创建 div
+	// 2, 调用方法
+	var div = document.createElement( 'div' );
+	// 3, 给其添加内容或样式
+	// 3.1 样式
+	div.style.border = '1px dashed red';
+	// setAttribute( 'style', ' ... ' )
+	// 3.2 内容: hello world  文本也是节点对象
+	var txt = document.createTextNode( 'Hello World' );
+	div.appendChild( txt );
+	// 4, 获得被加入的目标
+	document.body.appendChild( div );
+
+</script>
+</html>

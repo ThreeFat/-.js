@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+</body>
+<script>
+	function parseHTML( html ) {
+		// 1, 需要一个容器
+		var div = document.createElement( 'div' );
+		// 2, 将字符串赋值给该容器的 innerHTML 属性
+		div.innerHTML = html;
+		// 3, 遍历 其 childeNodes
+		var res = [];
+		for ( var i = 0; i < div.childNodes.length; i++ ) {
+			res.push( div.childNodes[ i ] );
+		}
+		// 4, 返回元素数组
+		return res;
+	}
+
+
+	var list = parseHTML( '<div> 你好, 我是一个呗创建出来的 div </div><p>p</p>' )
+	document.body.appendChild( list[ 1 ] );
+
+</script>
+</html>

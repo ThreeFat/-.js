@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+</body>
+<script>
+	// 在 js 中有一个对象 Date 它表示时间, 
+	// 使用 + new Date() 可以得到当前的毫秒数
+	var start = +new Date;
+
+	// 第 1 种方法
+	// 使用 documentfragment 的对象 来表示内存节点
+
+
+	// var dfg = document.createDocumentFragment();
+
+	// for ( var i = 0; i < 10000; i++ ) {
+	// 	var div = document.createElement( 'div' );
+	// 	var txt = document.createTextNode( 'Hello JavaScript - ' + i );
+
+	// 	div.style.border = '1px dashed red';
+	// 	div.style.margin = '5px';
+	// 	div.style.padding = '5px';
+	// 	div.style.backgroundColor = 'pink';
+
+	// 	div.appendChild( txt );
+
+	// 	dfg.appendChild( div );
+	// }
+
+	// document.body.appendChild( dfg );
+
+
+	// 没有样式 60, 有样式 240
+ 
+
+
+
+
+
+
+	// 第 2 中做法
+	var str = [];
+	for ( var i = 0; i < 10000; i++ ) {
+		str.push('<div style="border:1px dashed red; background-color: pink; margin: 5px; padding: 5px;>Hello JavaScript - ' + i + '</div>');
+	}
+	document.body.innerHTML = str.join( '' );
+
+
+	var end = +new Date;
+	console.log( end - start );
+</script>
+</html>

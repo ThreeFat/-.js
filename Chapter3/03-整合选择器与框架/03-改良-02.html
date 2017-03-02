@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="$2.js"></script>
+</head>
+<body>
+</body>
+<script>
+	
+	var obj = I( '<div style="border: 1px solid red; width: 300px; height: 200px">测试</div>' );
+
+	obj.appendTo( document.body );
+
+
+	var list = I( 'div' );
+
+	for ( var i = 0; i < list.length; i++ ) {
+		list[ i ].style.backgroundColor = 'pink';
+	}
+
+</script>
+
+</html>
