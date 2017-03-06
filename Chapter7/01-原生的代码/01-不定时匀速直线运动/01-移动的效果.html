@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#dv {
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+		input {
+			margin-top: 150px;
+		}
+	</style>
+</head>
+<body>
+	<div id="dv"></div>
+	<input type="button" value=" click " onclick="fn()" />
+</body>
+<script>
+	var dv = document.getElementById( 'dv' );
+	function fn1() {
+		// 水平移动, 从 0 移动到 500
+		// dv.style.left = '500px';
+
+		var intervalId = setInterval(function () {
+
+			// 慢慢的累加 left 值
+			// 应该让该盒子 left 的值加到 500 就不再加
+			// clearInterval( intervalId );
+
+			// 1. 获得到原来的值
+			var x = parseInt(dv.style.left || dv.offsetLeft);
+			// 2. 累加
+			x += 2;
+			// 3. 判断是否要停下来
+			if ( x >= 500 ) {
+				clearInterval( intervalId );
+				x = 500;
+			}
+			// 4. 设置值
+			dv.style.left = x + 'px';
+
+		}, 20);
+
+	}
+
+
+	function fn() {
+
+		var intervalId = setInterval(function () {
+
+			// 1. 获得到原来的值
+			var x = parseInt(dv.style.top || dv.offsetTop);
+			// 2. 累加
+			x += 2;
+			// 3. 判断是否要停下来
+			if ( x >= 500 ) {
+				clearInterval( intervalId );
+				x = 500;
+			}
+			// 4. 设置值
+			dv.style.top = x + 'px';
+
+		}, 20);
+
+	}
+
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#dv {
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+		input {
+			margin-top: 150px;
+		}
+	</style>
+</head>
+<body>
+	<div id="dv"></div>
+	<input type="button" value=" click " onclick="fn()" />
+</body>
+<script>
+	var dv = document.getElementById( 'dv' );
+	
+	function g( t, d, b, c ) {
+		// 要求一开始非常的快, 然后最后停下来
+
+		// if ((t/=d) < (1/2.75)) {
+		// 	return c*(7.5625*t*t) + b;
+		// } else if (t < (2/2.75)) {
+		// 	return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+		// } else if (t < (2.5/2.75)) {
+		// 	return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+		// } else {
+		// 	return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+		// }
+
+
+
+
+
+
+
+		var s=1.70158;var p=0;var a=c;
+		if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+		if (a < Math.abs(c)) { a=c; var s=p/4; }
+		else var s = p/(2*Math.PI) * Math.asin (c/a);
+		return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+	
+
+	}
+
+	
+
+	function move( node, x, time ) {
+		// 计算 位移, 计算速度
+		var startX = parseInt( node.style.left || node.offsetLeft );
+		
+		var startTime = +new Date;
+		var intervalId = setInterval(function () {
+			var currentTime = +new Date;
+			var deltaTime = currentTime - startTime;
+
+			if ( deltaTime >= time ) {
+				clearInterval( intervalId );
+				deltaTime = time;
+			}
+
+			node.style.left = startX + g( deltaTime, time, startX, x ) + 'px';			
+
+		}, 20 );
+
+	}
+
+	function fn () {
+		// 4 秒钟 移动到 700
+		move( dv, 700, 4000 );
+
+	}
+
+</script>
+</html>

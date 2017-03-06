@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#dv {
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+		input {
+			margin-top: 150px;
+		}
+	</style>
+	<script src="$.js"></script>
+	<script>
+		
+	
+
+
+	</script>
+</head>
+<body>
+	<div id="dv"></div>
+	<input type="button" value=" click " />
+</body>
+<script>
+
+
+	var easingObj = {
+		line: function ( x, t, b, c, d ) {
+			var speed = ( c - b ) / d;
+			return speed * t;
+		},
+		change: function ( x, t, b, c, d ) {
+			return Math.log( t + 1 ) / Math.log( d + 1 ) * ( c - b );
+		}
+	} 
+
+	// animate
+	function animate( x, props, dur, easing ) {
+		// 假设 props 就是 x 和 y
+
+		// 1. 获得当前位置与时间
+		var startx = parseInt( x.style.left || x.offsetLeft ),
+			starty = parseInt( x.style.top  || x.offsetTop ),
+
+			startTime = +new Date(),
+
+			// 2. 开启计时器
+			intervalId = setInterval(function () {
+				// 3. 获得已经过的时间
+				var t = (+new Date) - startTime;
+
+				if ( t >= dur ) {
+					clearInterval( intervalId );
+					t = dur;
+				}
+
+				// 4. 实现欢动
+				easing = easing || 'change';
+
+				// 5. 设置属性值
+				x.style.left = startx + 
+					easingObj[ easing ]( null, t, startx, parseInt(props[ 'left' ]), dur )
+					+ 'px';
+				x.style.top = starty + 
+					easingObj[ easing ]( null, t, starty, parseInt(props[ 'top' ]), dur )
+					+ 'px';
+
+			}, 20 );
+	}
+
+	// 调用
+	I( 'input' ).click(function () {
+
+		animate( I( 'div' )[ 0 ], { 
+			left: '700px',
+			top: '400px'
+		}, 4000 );
+
+	});
+
+</script>
+</html>

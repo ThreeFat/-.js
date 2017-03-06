@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#dv {
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+		input {
+			margin-top: 150px;
+		}
+	</style>
+</head>
+<body>
+	<div id="dv"></div>
+	<input type="button" value=" click " onclick="fn()" />
+</body>
+<script>
+	var dv = document.getElementById( 'dv' );
+	function fn() {
+		
+
+		// 1. 获得到原来的值
+		var startX = parseInt(dv.style.left || dv.offsetLeft);
+		// 2. 获得开始的时间
+		var startTime = +new Date();
+		var intervalId = setInterval(function () {
+			// 3. 获得当前时间, 求差后得到经过的时间
+			var currentTime = +new Date();
+			var time = currentTime - startTime;
+			// console.log( time ); 
+
+			// 4. 当时间到达的时候就停止下来
+			if ( time >= 2000 ) {
+				clearInterval( intervalId );
+				time = 2000;
+			}
+			// 5. 根据公式计算位移
+			// 时间 * 速度 = 位移
+			var weiyi = time * 0.25;
+			dv.style.left = startX + weiyi + 'px';
+
+		}, 20);
+
+	}
+
+
+
+
+</script>
+</html>
