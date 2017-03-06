@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		div {
+			border: 1px dotted blue;
+		}
+
+		#dv, .c {
+
+			width: 300px;
+			height: 150px;
+			border: 1px dashed red;
+			margin: 10px;
+			padding: 10px;
+		}
+	</style>
+	<script src="itcast.js"></script>
+	<script>
+		
+		itcast.fn.extend({
+			// 方法写在这里即可
+			appendTo1: function ( dom ) {
+				// 如果参数是一个 dom 对象
+				// 将 this[ i ] 加入到 dom 中
+				for ( var i = 0; i < this.length; i++ ) {
+					dom.appendChild( this[ i ] );
+				}
+			},
+			// 如果参数是 itcast 对象, 那么 就不是将 this[ i ] 加到
+			// dom 中了. 应该加到 dom[ 0 ]
+			// 因此首先要判断一下
+			appendTo2: function ( dom ) {
+				if ( dom.type === 'itcast' ) {
+					for ( var i = 0; i < this.length; i++ ) {
+						dom[ 0 ].appendChild( this[ i ] );
+					}
+				} else if ( dom.nodeType ) {
+					for ( var i = 0; i < this.length; i++ ) {
+						dom.appendChild( this[ i ] );
+					}
+				}
+			},
+
+			appendTo: function ( selector ) {
+				var iObj = this.constructor( selector );
+				// 将 this[ i ] 加入到 iObj[ 0 ] 上
+				for ( var i = 0; i < this.length; i++ ) {
+					iObj[ 0 ].appendChild( this[ i ] );
+				}
+			}
+		});
+
+
+	</script>
+</head>
+<body>
+	<div id="dv"></div>
+	<div class="c"></div>
+</body>
+<script>
+	// I( '<div>123</div>' + 
+	//    '<div>456</div>' +
+	//    '<div>789</div>'
+	//  ).appendTo( document.body );
+
+	// I( '<div>123</div>' + 
+	//    '<div>456</div>' +
+	//    '<div>789</div>'
+	//  ).appendTo( I( document.body ) );
+
+
+	// 利用 dom 对象添加
+	I( '<div>123</div>' + 
+	   '<div>456</div>' +
+	   '<div>789</div>').appendTo( document.body );
+
+	// 利用 id 选择器
+	I( '<div>123</div>' + 
+	   '<div>456</div>' +
+	   '<div>789</div>').appendTo( '#dv' );
+
+	// 利用 itcast 对象
+	I( '<div>123</div>' + 
+	   '<div>456</div>' +
+	   '<div>789</div>').appendTo( I( '.c' ) );
+
+</script>
+</html>

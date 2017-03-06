@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		div {
+			border: 1px dotted blue;
+		}
+
+		#dv, .c {
+
+			width: 300px;
+			height: 150px;
+			border: 1px dashed red;
+			margin: 10px;
+			padding: 10px;
+		}
+	</style>
+	<script src="itcast.js"></script>
+	<script>
+		
+
+		function prependChild ( parent, element ) {
+			// parent.insertBefore( 新元素, 旧元素 )
+			var first = parent.firstChild;
+
+			parent.insertBefore( element, first );
+
+		}
+
+
+		itcast.fn.extend({
+			
+
+			appendTo: function ( selector ) {
+				var iObj = this.constructor( selector );
+				var newObj = this.constructor();
+				for ( var i = 0; i < this.length; i++ ) {
+					for ( var j = 0; j < iObj.length; j++ ) {
+						var temp = 
+								i == this.length - 1 && j == iObj.length - 1 
+									? this[ i ] 
+									: this[ i ].cloneNode( true );
+
+						[].push.call( newObj, temp );
+						iObj[ j ].appendChild( temp );
+					}
+				}
+				return newObj;
+			},
+			append: function ( selector ) {
+
+				I( selector ).appendTo( this );
+
+				return this;
+			},
+			prependTo: function ( selector ) {
+				var iObj = this.constructor( selector );
+				var newObj = this.constructor();
+				for ( var i = 0; i < this.length; i++ ) {
+					for ( var j = 0; j < iObj.length; j++ ) {
+						var temp = 
+								i == this.length - 1 && j == iObj.length - 1 
+									? this[ i ] 
+									: this[ i ].cloneNode( true );
+
+						[].push.call( newObj, temp );
+						// iObj[ j ].appendChild( temp );
+						prependChild( iObj[ j ], temp );
+					}
+				}
+				return newObj;
+			}
+		});
+
+
+	</script>
+</head>
+<body>
+	<div id="dv">
+		<div>原有的div元素</div>
+	</div>
+	<div class="c">
+		<div>原有的div元素</div>
+	</div>
+</body>
+<script>
+	
+	var i1 = I( '<div>123</div>' );
+
+	var i2 = i1.prependTo( '#dv, .c' );
+
+</script>
+</html>

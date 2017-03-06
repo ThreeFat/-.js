@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<div id="dv">
+		<p>1</p>
+		<p>2</p>
+	</div>
+</body>
+<script>
+	function prependChild ( parent, element ) {
+		// parent.insertBefore( 新元素, 旧元素 )
+		var first = parent.firstChild;
+
+		parent.insertBefore( element, first );
+
+	}
+
+
+	var div	= document.createElement( 'div' );
+	div.innerHTML = '1234567';
+
+	var divParent = document.getElementById( 'dv' );
+
+	prependChild( divParent, div );
+
+</script>
+</html>

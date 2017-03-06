@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<!-- <script src="../../../资料/jquery/jquery-1.12.0/jquery-1.12.0.js"></script> -->
+	<script src="itcast-06.js"></script>
+</head>
+<body>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+	<div>5</div>
+</body>
+<script>
+	// $( 'div' ).each( function ( k, v ) {
+	// 	console.log( k + ', ' + v + ', ' + this );
+
+	// });
+
+
+	I( 'div' ).each( function ( k, v ) {
+		// console.log( k + ', ' + v + ', ' + this );
+		this.innerHTML = 'a';
+	});
+</script>
+</html>

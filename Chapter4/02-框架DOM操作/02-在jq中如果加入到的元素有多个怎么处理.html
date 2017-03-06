@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		div {
+			border: 1px dotted blue;
+		}
+
+		#dv, .c {
+
+			width: 300px;
+			height: 150px;
+			border: 1px dashed red;
+			margin: 10px;
+			padding: 10px;
+		}
+	</style>
+	<script src="../../../资料/jquery/jquery-1.12.0/jquery-1.12.0.js"></script>
+</head>
+<body>
+	<div class="c"></div>
+	<div id="dv"></div>
+	<div class="c"></div>
+</body>
+<script>
+	// alert( $ );
+
+	$( '<div>123</div><div>456</div>' ).appendTo( '.c' );
+
+</script>
+</html>

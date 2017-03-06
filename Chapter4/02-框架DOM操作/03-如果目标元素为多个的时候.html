@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		div {
+			border: 1px dotted blue;
+		}
+
+		#dv, .c {
+
+			width: 300px;
+			height: 150px;
+			border: 1px dashed red;
+			margin: 10px;
+			padding: 10px;
+		}
+	</style>
+	<script src="itcast.js"></script>
+	<script>
+		
+		itcast.fn.extend({
+			
+
+			appendTo: function ( selector ) {
+				var iObj = this.constructor( selector );
+				// 新建一个 itcast 对象. 一个 length = 0 的对象
+				// 每次在 将 this[ i ] 加到 目标元素上的时候
+				// 我们先把这个元素 加到 新建的 itcast 对象
+				var newObj = this.constructor(); // itcast.fn.constrcuter
+				for ( var i = 0; i < this.length; i++ ) {
+					for ( var j = 0; j < iObj.length; j++ ) {
+						var temp = 
+								i == this.length - 1 && j == iObj.length - 1 
+									? this[ i ] 
+									: this[ i ].cloneNode( true );
+
+						[].push.call( newObj, temp );
+						iObj[ j ].appendChild( temp );
+					}
+				}
+				return newObj;
+			}
+		});
+
+
+	</script>
+</head>
+<body>
+	<div id="dv"></div>
+	<div class="c"></div>
+</body>
+<script>
+	
+	var i1 = I( '<div>123</div>' );
+
+	var i2 = i1.appendTo( 'div' );
+
+</script>
+</html>
