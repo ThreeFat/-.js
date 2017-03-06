@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src='$.js'></script>
+	<script>
+		$.fn.extend({
+			attr: function ( name, value ) {
+				if ( value ) {
+					if ( $.isString( name ) && $.isString( value ) ) {
+						return this.each(function () {
+							// this.属性 = 值
+							this.setAttribute( name, value );
+						});
+					}
+				} else {
+					if ( $.isString( name ) ) {
+						return this[ 0 ].getAttribute( name );
+					}
+				}
+				return this;
+			}
+		});
+	</script>
+</head>
+<body>
+</body>
+<script>
+	I( '<img />' ).attr( 'src', '1.png' ).appendTo( 'body' );
+	// table
+</script>
+</html>

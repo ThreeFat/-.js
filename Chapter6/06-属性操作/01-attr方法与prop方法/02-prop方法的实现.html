@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src='$.js'></script>
+	<script>
+		$.fn.extend({
+			attr: function ( name, value ) {
+				if ( value ) {
+					if ( $.isString( name ) && $.isString( value ) ) {
+						return this.each(function () {
+							// this.属性 = 值
+							this.setAttribute( name, value );
+						});
+					}
+				} else {
+					if ( $.isString( name ) ) {
+						return this[ 0 ].getAttribute( name );
+					}
+				}
+				return this;
+			},
+			prop: function ( name, value ) {
+				if ( value ) {
+					if ( $.isString( name ) && $.isString( value ) ) {
+						return this.each(function () {
+							this[ name ] = value
+						});
+					}
+				} else {
+					if ( $.isString( name ) ) {
+						return this[ 0 ][ name ];
+					}
+				}
+				return this;
+			},
+			val: function ( value ) {
+				return this.attr( 'value', value );
+			}
+		});
+	</script>
+</head>
+<body>
+	<input type="button" /><br />
+	<input type="button" /><br />
+	<input type="button" /><br />
+	<input type="button" /><br />
+	<input type="button" /><br />
+</body>
+<script>
+
+	I( 'input' ).val( '点击测试' ).click(function () {
+		alert( I(this).val() );
+	});
+
+</script>
+</html>

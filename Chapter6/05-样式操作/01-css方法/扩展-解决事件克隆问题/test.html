@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		div {
+			border: 1px dashed red;
+			margin: 5px;
+			padding: 5px;
+		}
+	</style>
+	<script src="test.js"></script>
+	<script>
+		itcast.fn.extend({		
+			css1: function ( option ) {
+
+				return this.each(function () {
+					for ( var k in option ) {
+						this.style[ k ] = option[ k ];
+					}
+				});
+
+			},
+			css: function ( option ) { // name, value
+				var len = arguments.length,
+					args = arguments;
+				if ( len === 2 ) {
+					// 判断键值
+					if ( itcast.isString( args[ 0 ] ) && 
+						 itcast.isString( args[ 1 ] ) ) {
+						return this.each(function () {
+							this.style[ args[ 0 ] ] = args[ 1 ];
+						});
+					}
+
+				} else if ( len === 1 ) {
+
+
+
+				}
+
+				return this;
+			}
+
+		});
+
+
+	</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+</body>
+<script>
+	// 创建一个 div, 加到 body 中, 并且设置其样式
+	// I( '<div></div>' ).css({
+	// 	border: '1px dashed red',
+	// 	backgroundColor: 'pink',
+	// 	width: '400px',
+	// 	height: '300px'
+	// }).appendTo( 'body' ).click(function () {
+
+	// 	this.innerHTML = '我被点击了';
+	// });
+	
+
+	I( '<p></p><p></p>' )
+		.css( 'border', '1px dashed green' )
+		.css( 'width', '200px')
+		.css( 'height', '100px' )
+		.click( function () {
+			alert( '点击' );
+		}).appendTo( 'div' );
+
+
+</script>
+</html>

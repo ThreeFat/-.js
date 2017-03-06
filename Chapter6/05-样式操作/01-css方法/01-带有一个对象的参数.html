@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="$.js"></script>
+	<script>
+		$.fn.extend({
+			css1: function ( option ) {
+				// option 是样式的键值对
+				// 需要将 option 中的每一个样式与
+				// 值交给 this 中每一个 DOM 对象
+				for ( var i = 0; i < this.length; i++ ) {
+					// this[ i ] 就是 dom 对象
+					for ( var k in option ) {
+						this[ i ].style[ k ] = option[ k ];
+					}
+				}
+
+				return this;
+			},
+			css: function ( option ) {
+
+				return this.each(function () {
+					for ( var k in option ) {
+						this.style[ k ] = option[ k ];
+					}
+				});
+
+			}
+
+		});
+
+
+	</script>
+</head>
+<body>
+</body>
+<script>
+	// 创建一个 div, 加到 body 中, 并且设置其样式
+	I( '<div></div>' ).css({
+		border: '1px dashed red',
+		backgroundColor: 'pink',
+		width: '400px',
+		height: '300px'
+	}).appendTo( 'body' ).click(function () {
+
+		this.innerHTML = '我被点击了';
+	});
+	
+
+</script>
+</html>

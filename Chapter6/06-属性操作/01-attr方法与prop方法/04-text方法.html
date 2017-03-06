@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src='$.js'></script>
+	<script>
+		$.fn.extend({
+			attr: function ( name, value ) {
+				if ( value ) {
+					if ( $.isString( name ) && $.isString( value ) ) {
+						return this.each(function () {
+							// this.属性 = 值
+							this.setAttribute( name, value );
+						});
+					}
+				} else {
+					if ( $.isString( name ) ) {
+						return this[ 0 ].getAttribute( name );
+					}
+				}
+				return this;
+			},
+			prop: function ( name, value ) {
+				if ( value ) {
+					if ( $.isString( name ) && $.isString( value ) ) {
+						return this.each(function () {
+							this[ name ] = value
+						});
+					}
+				} else {
+					if ( $.isString( name ) ) {
+						return this[ 0 ][ name ];
+					}
+				}
+				return this;
+			},
+			val: function ( value ) {
+				return this.attr( 'value', value );
+			},
+			html: function ( html ) {
+				return this.prop( 'innerHTML', html );
+			},
+			text: function ( txt ) {
+				if ( txt ) {
+					// 传入了内容. 应该插入
+					// 保持链式
+					return this.each( function () {
+						this.innerHTML = ''; // removeChild 循环
+						this.appendChild( document.createTextNode( txt + '' ) );
+					});
+				} else {
+					// 没哟传入内容要获得内容
+					// 遍历节点的子元素, 并将文本节点 ( nodeType == 3) 加入到数组中
+					var arr = [];
+					getTxt( this[ 0 ], arr );
+					return arr.join( ' ' );
+				}
+
+				return this;
+
+				function getTxt( node, list ) {
+					var arr = node.childNodes;
+					for ( var i = 0; i < arr.length; i++ ) {
+						if ( arr[ i ].nodeType === 3 ) {
+							list.push( arr[ i ].nodeValue );
+						}
+						if ( arr[ i ].nodeType === 1 ) {
+							getTxt( arr[ i ], list );
+						} 
+					}
+				}
+			}
+		});
+	</script>
+</head>
+<body>
+	<div id="dv">123
+			<div>456</div>
+			<div>789</div>
+			0
+		</div>
+</body>
+<script>
+
+	// console.log( I( '#dv' ).text() );
+
+	I( '#dv' ).text( 'hello javascript' );
+
+	
+</script>
+</html>
