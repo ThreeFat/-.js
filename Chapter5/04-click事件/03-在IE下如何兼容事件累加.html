@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		div {
+			width: 400px;
+			height: 100px;
+			border: 1px solid red;
+			margin: 10px;
+		}
+	</style>
+	<script src="$.js"></script>
+	<script>
+	// 要求每一个 $ 对象有一个 events 属性, 该属性存储事件
+	// 与对应的函数数组
+
+	// 事件处理( onclick, addEventListener, attachEvent ) 不再是绑定
+	// 直接循环对应数组
+
+
+	// 需要修改构造函数, 来初始化事件数组对象
+	// 还需要添加事件处理函数
+
+	// 添加什么事件就增加什么属性
+
+
+	$.fn.extend({
+		click: function ( fn ) {
+			
+			if ( !this.events[ 'click' ] ) {
+				this.events[ 'click' ] = [];
+
+				// 给当前dom元素添加 处理事件
+
+				var that = this;
+				this.each(function () {
+					this.onclick = function () {
+						// 遍历对应的数组, 依次调用方法
+						for ( var i = 0; i < that.events[ 'click' ].length; i++ ) {
+							that.events[ 'click' ][ i ]();
+						}
+
+					};
+				});
+
+
+			}
+
+			this.events[ 'click' ].push( fn );
+
+			return this;
+		}
+	});
+
+
+	</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+</body>
+<script>
+	var iObj = I( 'div' )
+
+	iObj.events = {};
+	// 应该给每一个对象都处理好事件
+	// iObj.each(function () {
+	// 	var that = this;
+	// 	this.onclick = function () {
+	// 		// 遍历对应的数组, 依次调用方法
+	// 		for ( var i = 0; i < iObj.events[ 'click' ].length; i++ ) {
+	// 			iObj.events[ 'click' ][ i ]();
+	// 		}
+
+	// 	};
+	// });
+
+
+
+	iObj.click(function () {
+		alert( '点击了' );
+	}).click( function () {
+		alert( '第二次点击' );
+	});
+
+</script>
+</html>

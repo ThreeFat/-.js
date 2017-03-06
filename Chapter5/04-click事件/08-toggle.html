@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="$ 2.js"></script>
+</head>
+<body>
+	<input type="button" id="btn" value=" 点击 " >
+</body>
+<script>
+	I( '#btn' ).toggle(function ( e ) {
+
+		console.log( this );
+		console.log( e );
+		alert( 1 );
+	}, function () {
+		alert( 2 );
+	}, function () {
+		alert( 3 );
+	});
+
+</script>
+</html>

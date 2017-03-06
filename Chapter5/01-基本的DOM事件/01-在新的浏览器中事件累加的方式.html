@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		div {
+			width: 400px;
+			height: 300px;
+			border: 1px dashed red;
+		}
+	</style>
+</head>
+<body>
+	<div id="dv"></div>
+</body>
+<script>
+	var dv = document.getElementById( 'dv' );
+
+	// 1 onclick 不能实现事件处理函数的追加
+	// dv.onclick = function () {
+	// 	alert( '点击了1' );
+	// };
+	// dv.onclick = function () {
+	// 	alert( '点击了2' );
+	// };
+
+
+	dv.addEventListener( 'click', function () {
+		alert( '点击第一次' );
+	});
+	dv.addEventListener( 'click', function () {
+		alert( '2222222' );
+	});
+
+
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+</body>
+<script>
+
+	var div = document.createElement( 'div' );
+	var events = [];
+
+	for ( var k in div ) {
+		if ( k.slice( 0, 2 ) === 'on' && events.indexOf( k ) == -1 ) {
+			events.push( k );
+		}
+	}
+
+	// console.log( events );
+	for ( var i = 0; i < events.length; i++ ) {
+		document.write( i + ', ' + events[ i ] + '<br />' );
+	}
+
+
+	// chrome 72
+	// firefox 62
+
+</script>
+</html>

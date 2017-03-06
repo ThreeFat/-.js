@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		div {
+			width: 400px;
+			height: 300px;
+			border: 1px dashed red;
+		}
+	</style>
+</head>
+<body>
+	<div id="dv"></div>
+</body>
+<script>
+	var dv = document.getElementById( 'dv' );
+
+	// dv.addEventListener( 'click', function () {
+	// 	alert( '点击第一次' );
+	// });
+	// dv.addEventListener( 'click', function () {
+	// 	alert( '2222222' );
+	// });
+
+	// alert( dv.attachEvent );
+
+	dv.attachEvent( 'onclick', function ( e ) {
+		alert( '11111111111111111111' );
+	});
+
+		dv.attachEvent( 'onclick', function ( e ) {
+		alert( '22222222222222222222' );
+	});
+
+</script>
+</html>

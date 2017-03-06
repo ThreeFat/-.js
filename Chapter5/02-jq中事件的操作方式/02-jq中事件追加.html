@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../../../资料/jquery/jquery-1.12.0/jquery-1.12.0.js"></script>
+	<style>
+		div {
+			width: 400px;
+			height: 300px;
+			border: 1px dashed red;
+		}
+	</style>
+</head>
+<body>
+	<div id="dv"></div>
+</body>
+<script>
+	// 1, on
+	// $( 'div' )
+	// 	.on( 'click', function () { alert( '你好' ); })
+	// 	.on( 'click', function () { alert( '今天天气怎样' ); })
+
+	// 2, on 与 click
+	$( 'div' )
+		.on( 'click', function () { alert( '你好' ); })
+		.click( function () { alert( '今天天气怎样' ); } );
+
+</script>
+</html>
